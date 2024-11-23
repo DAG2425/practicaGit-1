@@ -23,11 +23,15 @@ namespace ejercicioTelegrama_1
             double coste = 0;
             textoTelegrama = txtTelegrama.Text;
 
-            char[] delimitadores = new char[] {' ','\r','\n'};
+            char[] delimitadores = new char[] { ' ', '\r', '\n' };
             int numPalabras = textoTelegrama.Split(delimitadores, StringSplitOptions.RemoveEmptyEntries).Length;
 
+            if (rbOrdinario.Checked == false && rbUrgente.Checked == false)
+            {
+                MessageBox.Show("Por favor, indique el tipo de telegrama a enviar.");
 
-            if (chkUrgente.Checked == false) 
+            }
+            if (rbOrdinario.Checked)
             {
                 if (numPalabras <= 10 && numPalabras > 0)
                 {
@@ -41,9 +45,10 @@ namespace ejercicioTelegrama_1
                 {
                     MessageBox.Show("Por favor, escriba su telegrama a enviar");
                 }
+                txtPrecio.Text = coste.ToString() + " euros";
             }
-     
-            if (chkUrgente.Checked)
+
+            if (rbUrgente.Checked)
             {
                 if (numPalabras <= 10 && numPalabras > 0)
                 {
@@ -57,8 +62,9 @@ namespace ejercicioTelegrama_1
                 {
                     MessageBox.Show("Por favor, escriba su telegrama a enviar");
                 }
-            }    
-            txtPrecio.Text = coste.ToString() + " euros";
+                txtPrecio.Text = coste.ToString() + " euros";
+            }
+
         }
     }
 }
