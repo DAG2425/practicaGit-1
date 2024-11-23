@@ -20,51 +20,44 @@ namespace ejercicioTelegrama_1
         private void btnCalcularPrecio_Click(object sender, EventArgs e)
         {
             string textoTelegrama;
-            char tipoTelegrama = ' ';
-            int numPalabras = 0;
-            double coste;
-
-            //Leo el telegrama  
+            double coste = 0;
             textoTelegrama = txtTelegrama.Text;
-            // telegrama urgente? 
-            if (chkUrgente.Checked)
-            {
-                tipoTelegrama = 'u';
-            }
-            //Obtengo el número de palabras que forma el telegrama  
-            numPalabras = textoTelegrama.Length;
 
-            //Si el telegrama es ordinario 
-            if (tipoTelegrama == 'o')
+            char[] delimitadores = new char[] {' ','\r','\n'};
+            int numPalabras = textoTelegrama.Split(delimitadores, StringSplitOptions.RemoveEmptyEntries).Length;
+
+
+            if (chkUrgente.Checked == false) 
             {
-                if (numPalabras <= 10)
+                if (numPalabras <= 10 && numPalabras > 0)
                 {
                     coste = 2.5;
                 }
-                else
+                else if (numPalabras > 10)
                 {
-                    coste = 0.5 * numPalabras;
+                    coste = 2.5 + 0.5 * (numPalabras - 10);
+                }
+                else if (numPalabras == 0)
+                {
+                    MessageBox.Show("Por favor, escriba su telegrama a enviar");
                 }
             }
-            else
-            //Si el telegrama es urgente 
+     
+            if (chkUrgente.Checked)
             {
-                if (tipoTelegrama == 'u')
+                if (numPalabras <= 10 && numPalabras > 0)
                 {
-                    if (numPalabras <= 10)
-                    {
-                        coste = 5;
-                    }
-                    else
-                    {
-                        coste = 5 + 0.75 * (numPalabras - 10);
-                    }
+                    coste = 5;
                 }
-                else
+                else if (numPalabras > 10)
                 {
-                    coste = 0;
+                    coste = 5 + 0.75 * (numPalabras - 10);
                 }
-            }
+                else if (numPalabras == 0)
+                {
+                    MessageBox.Show("Por favor, escriba su telegrama a enviar");
+                }
+            }    
             txtPrecio.Text = coste.ToString() + " euros";
         }
     }
