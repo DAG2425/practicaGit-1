@@ -35,11 +35,11 @@ namespace ejercicioTelegrama_1
             {
                 if (numPalabras <= 10 && numPalabras > 0)
                 {
-                    coste = 2.5;
+                    coste = 3;
                 }
                 else if (numPalabras > 10)
                 {
-                    coste = 2.5 + 0.5 * (numPalabras - 10);
+                    coste = 3 + 0.5 * (numPalabras - 10);
                 }
                 else if (numPalabras == 0)
                 {
@@ -52,11 +52,11 @@ namespace ejercicioTelegrama_1
             {
                 if (numPalabras <= 10 && numPalabras > 0)
                 {
-                    coste = 5;
+                    coste = 6;
                 }
                 else if (numPalabras > 10)
                 {
-                    coste = 5 + 0.75 * (numPalabras - 10);
+                    coste = 6 + 0.75 * (numPalabras - 10);
                 }
                 else if (numPalabras == 0)
                 {
